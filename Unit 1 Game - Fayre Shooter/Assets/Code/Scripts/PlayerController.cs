@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         //Look
         pitch -= lookInput.y * Time.deltaTime * Senstivity;
-        yaw -= lookInput.x * Time.deltaTime * Senstivity;
+        yaw += lookInput.x * Time.deltaTime * Senstivity;
 
         pitch = Mathf.Clamp(pitch, -90f, 90f);
         //yaw = Mathf.Clamp(yaw, -90f, 90f);
