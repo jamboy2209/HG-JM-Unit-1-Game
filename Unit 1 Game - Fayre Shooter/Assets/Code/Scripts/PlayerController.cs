@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera camera;
+
     public Transform head;
     public float Senstivity = 10.0f;
     public float MoveSpeed = 10.0f;
@@ -20,6 +22,11 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,8 +34,7 @@ public class PlayerController : MonoBehaviour
         pitch -= lookInput.y * Time.deltaTime * Senstivity;
         yaw += lookInput.x * Time.deltaTime * Senstivity;
 
-        pitch = Mathf.Clamp(pitch, -90f, 90f);
-        //yaw = Mathf.Clamp(yaw, -90f, 90f);
+        pitch = Mathf.Clamp(pitch, -90f, 90f); //limits looking up and down to less than 180d
 
         head.localRotation = Quaternion.identity; //Reset rotation
         head.Rotate(pitch, yaw, 0);
@@ -57,8 +63,24 @@ public class PlayerController : MonoBehaviour
     {
 
     }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
+        Debug.Log("Fire");
+    }
 
+    public void OnScope(InputAction.CallbackContext context)
+    {
+        //Need to change this for a better system, can get stuck zoomed in
+
+        Debug.Log("Scope");
+        if (camera.fieldOfView != 20)
+        {
+            camera.fieldOfView = 20;
+        }
+        else
+        {
+            camera.fieldOfView = 60;
+        }       
     }
 }
