@@ -575,7 +575,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 200734086}
 --- !u!114 &561439555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,10 +588,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bdb6e8f85af4644b0112845f86d37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  MoveSpeed: 10
+  camera: {fileID: 200734086}
   head: {fileID: 200734087}
   Senstivity: 45
-  MoveSpeed: 10
+  m_RayDistance: 10
 --- !u!1 &1393071517
 GameObject:
   m_ObjectHideFlags: 0
