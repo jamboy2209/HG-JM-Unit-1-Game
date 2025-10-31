@@ -1,3 +1,4 @@
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,9 +30,15 @@ public class PlayerController : MonoBehaviour
     public float m_RayDistance = 10.0f;
 
     private bool m_RayHit = false;
-    private Vector3 m_HitPoint = Vector3.zero;
-    private Vector3 m_HitNormal = Vector3.zero;
-    private bool m_Grounded = false;
+    //private Vector3 m_HitPoint = Vector3.zero;
+    //private Vector3 m_HitNormal = Vector3.zero;
+    //private bool m_Grounded = false;
+
+    public float bulletForce = 10.0f;
+
+    //Scoping
+
+    public GameObject gun;
 
     private CharacterController characterController;
 
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
@@ -68,7 +76,8 @@ public class PlayerController : MonoBehaviour
         movement.y = 0.0f; //Stops us from flying
         movement.Normalize(); //Turns this into a Unit Vector and stops us from moving faster diagonally
 
-        characterController.Move(movement * Time.deltaTime * MoveSpeed);       
+        characterController.Move(movement * Time.deltaTime * MoveSpeed);
+        
     }
 
     void DoRaycast()
@@ -85,7 +94,16 @@ public class PlayerController : MonoBehaviour
             //m_HitNormal = hitInfo.normal;   //Store the surface normal of the object
             //m_Grounded = Vector3.Dot(Vector3.up, hitInfo.normal) > 0.5f; //Bit of a magic number here. Just trust me on this one.
 
-            Debug.Log("The ray hit" + hitInfo.collider.name);
+            Debug.Log("The ray hit " + hitInfo.collider.name);
+
+            GameObject target = hitInfo.collider.gameObject;
+
+            if (target.CompareTag("Physics Object") == true)
+            {
+
+                target.GetComponent<Rigidbody>().AddForce(head.forward * bulletForce);
+
+            }
         }
         else
         {
@@ -116,19 +134,27 @@ public class PlayerController : MonoBehaviour
         DoRaycast();
 
     }
-
+    
     public void OnScope(InputAction.CallbackContext context)
-    {
-        //Need to change this for a better system, can get stuck zoomed in
-
+    {        
         Debug.Log("Scope");
-        if (camera.fieldOfView != 20)
+        if (Mouse.current.rightButton.isPressed)
         {
             camera.fieldOfView = 20;
+            Senstivity = 30;
+
+            gun.transform.localPosition = new Vector3(0.0f, -0.15f, 1.35f);
+            gun.transform.localEulerAngles = new Vector3(90f, 0f ,0f);
+            //gun.transform.Translate(scopeIn, head.transform);
         }
         else
         {
             camera.fieldOfView = 60;
+            Senstivity = 60;
+
+            gun.transform.localPosition = new Vector3(0.65f, -0.3f, 0.85f);
+            gun.transform.localEulerAngles = new Vector3(85f, -5f, 0f);
+            //gun
         }       
     }
 }

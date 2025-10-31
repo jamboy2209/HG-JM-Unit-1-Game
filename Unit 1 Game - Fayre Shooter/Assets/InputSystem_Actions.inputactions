@@ -90,7 +90,7 @@
                     "name": "Scope",
                     "type": "PassThrough",
                     "id": "c271eeed-000b-447f-a21a-2ce710142417",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
