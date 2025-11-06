@@ -16,7 +16,7 @@ public class WaveMovement : MonoBehaviour
     void Start()
     {
         startPos = wave.transform.position;
-        offset = startPos.z*30f;
+        offset = startPos.z*25f;
         Debug.Log(startPos);
     }
 
