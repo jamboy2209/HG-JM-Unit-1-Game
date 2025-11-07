@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     //Raycasting
 
     private int cooldown;
-    public int cooldownTime;
+    public int cooldownTime = 30;
 
     public float m_RayDistance = 10.0f;
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     //pitch rand range
 
-    public float lowPitchRange = 0.0f;
+    public float lowPitchRange = 1.0f;
     public float highPitchRange = 3.0f;
 
     //============
