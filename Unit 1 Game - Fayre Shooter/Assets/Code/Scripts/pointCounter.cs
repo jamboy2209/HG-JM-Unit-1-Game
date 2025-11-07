@@ -9,6 +9,12 @@ public class pointCounter : MonoBehaviour
     public TextMeshProUGUI pointText;
     public GameObject winTextObject;
 
+    public AudioSource quack;
+    public AudioClip[] quackSound;
+
+    public AudioSource fanfare;
+    public AudioClip fanfareSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +38,10 @@ public class pointCounter : MonoBehaviour
 
             score++;
 
+            int quackIndex = Random.Range(0, 3);
+
+            quack.PlayOneShot(quackSound[quackIndex], 0.5f);
+            Debug.Log(quackSound[quackIndex]);
             Debug.Log(score);
 
             SetPointText();
@@ -44,6 +54,8 @@ public class pointCounter : MonoBehaviour
         if (score >= 15)
         {
             winTextObject.SetActive (true);
+
+            fanfare.PlayOneShot(fanfareSound, 0.75f);
         }
     }
 }

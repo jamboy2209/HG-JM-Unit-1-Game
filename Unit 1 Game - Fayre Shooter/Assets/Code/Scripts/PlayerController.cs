@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
     //Raycasting
 
+    private int cooldown;
+    public int cooldownTime;
+
     public float m_RayDistance = 10.0f;
 
     private bool m_RayHit = false;
@@ -41,6 +44,17 @@ public class PlayerController : MonoBehaviour
     public GameObject gun;
 
     private CharacterController characterController;
+
+    //gunshot sound
+
+    public AudioSource source;
+
+    public AudioClip gunshot;
+
+    //pitch rand range
+
+    public float lowPitchRange = 0.0f;
+    public float highPitchRange = 3.0f;
 
     //============
     //Main Program
@@ -77,13 +91,23 @@ public class PlayerController : MonoBehaviour
         movement.Normalize(); //Turns this into a Unit Vector and stops us from moving faster diagonally
 
         characterController.Move(movement * Time.deltaTime * MoveSpeed);
-        
+
+        //update rate of fire control
+
+        if (cooldown > 0)
+        {
+            cooldown--;
+        }
     }
 
     void DoRaycast()
     {
         RaycastHit hitInfo; //gives us information about what we hit (if anything)
         Ray ray = new Ray(transform.position, head.forward);
+
+        source.PlayOneShot(gunshot, 0.5f);
+
+        source.pitch = Random.Range(lowPitchRange, highPitchRange);
 
         //Do the raycast. Store the information in hitInfo
         m_RayHit = Physics.Raycast(ray, out hitInfo, m_RayDistance);
@@ -129,15 +153,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        Debug.Log("Fire");
+        if (cooldown <= 0 && context.ReadValue<float>() > 0) {
+            
+            Debug.Log("Fire");
 
-        DoRaycast();
+            DoRaycast();
 
+            cooldown = cooldownTime;            
+        }
     }
     
     public void OnScope(InputAction.CallbackContext context)
     {        
         Debug.Log("Scope");
+        Debug.Log(cooldown);
         if (Mouse.current.rightButton.isPressed)
         {
             camera.fieldOfView = 20;
