@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
             Senstivity = 30;
 
             gun.transform.localPosition = new Vector3(0.0f, -0.15f, 1.35f);
-            gun.transform.localEulerAngles = new Vector3(90f, 0f ,0f);
+            gun.transform.localEulerAngles = new Vector3(0f, 0f ,0f);
             //gun.transform.Translate(scopeIn, head.transform);
         }
         else
@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
             Senstivity = 60;
 
             gun.transform.localPosition = new Vector3(0.65f, -0.3f, 0.85f);
-            gun.transform.localEulerAngles = new Vector3(85f, -5f, 0f);
+            gun.transform.localEulerAngles = new Vector3(-5f, -5f, 0f);
             //gun
         }       
     }
