@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEditor.SceneManagement;
 
 public class pointCounter : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class pointCounter : MonoBehaviour
     public AudioSource fanfare;
     public AudioClip fanfareSound;
 
+    private PlayerController playerController = new PlayerController();
+ 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,10 +50,10 @@ public class pointCounter : MonoBehaviour
             SetPointText();
         }
     }
-    void SetPointText()
+    private void SetPointText()
     {
         pointText.text = "Score " + score.ToString();
-
+        
         if (score >= 15)
         {
             winTextObject.SetActive (true);

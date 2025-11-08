@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Physics Object
   - Score Zone
+  - Reset Button
   layers:
   - Default
   - TransparentFX

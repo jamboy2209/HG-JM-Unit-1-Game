@@ -1,6 +1,8 @@
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +10,15 @@ public class PlayerController : MonoBehaviour
     //Variable Initialisation
     //=======================
 
+    //Level loading
+
+    public GameObject[] duckPlatforms;
+
+    public int levelNo = 2;
+
+    GameObject duckInstance; //instance
+    pointCounter point;
+    
     //Movement
 
     public float MoveSpeed = 10.0f;
@@ -65,8 +76,42 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-    }
 
+        //startLevel(0);
+    }
+    /*
+    void startLevel(int levelNo)
+    {
+        
+        //point.score = 0;
+
+        //point.SetPointText();
+
+        if (levelNo == 0) 
+        { 
+        duckPlatforms[levelNo].SetActive(true);
+        duckPlatforms[levelNo+1].SetActive(false);
+        duckPlatforms[levelNo+2].SetActive(false);
+        }
+        else if (levelNo == 1)
+        {
+        duckPlatforms[levelNo].SetActive(true);
+        duckPlatforms[levelNo-1].SetActive(true);
+        duckPlatforms[levelNo+1].SetActive(false);
+        }
+        else
+        {
+        duckPlatforms[levelNo].SetActive(true);
+        duckPlatforms[levelNo - 1].SetActive(true);
+        duckPlatforms[levelNo - 2].SetActive(true);
+        }
+        //duckInstance = Instantiate(duck);
+
+        //duckInstance.transform.position = new Vector3(0f, 3f, 4f);
+        //duckInstance.transform.parent = duckPlatforms[levelNo].transform;
+        
+    }
+    */
     private void OnEnable()
     {
         
@@ -103,7 +148,7 @@ public class PlayerController : MonoBehaviour
     void DoRaycast()
     {
         RaycastHit hitInfo; //gives us information about what we hit (if anything)
-        Ray ray = new Ray(transform.position, head.forward);
+        Ray ray = new Ray(head.position, head.forward);
 
         source.PlayOneShot(gunshot, 0.5f);
 
@@ -122,13 +167,20 @@ public class PlayerController : MonoBehaviour
 
             GameObject target = hitInfo.collider.gameObject;
 
-            if (target.CompareTag("Physics Object") == true)
+            if (target.CompareTag("Physics Object"))
             {
 
                 target.GetComponent<Rigidbody>().AddForce(head.forward * bulletForce);
 
             }
+            else if (target.CompareTag("Reset Button"))
+            {   
+                levelNo = 1;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                //startLevel(levelNo);
+            }
         }
+            
         else
         {
             Debug.Log("The ray hit nothing!");
