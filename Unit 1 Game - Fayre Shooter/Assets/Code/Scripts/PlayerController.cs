@@ -1,4 +1,5 @@
 using Unity.Collections;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
     //=======================
 
     //Level loading
+
+    string[] sceneNames = {"Fairground Level 1", "Fairground Level 2", "Fairground Level 3"};
 
     public GameObject[] duckPlatforms;
 
@@ -175,9 +178,18 @@ public class PlayerController : MonoBehaviour
             }
             else if (target.CompareTag("Reset Button"))
             {   
-                levelNo = 1;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                //startLevel(levelNo);
+                if (target.name == "Lvl 1 Button")
+                {
+                    SceneManager.LoadScene("Fairground Level 1");
+                } 
+                else if (target.name == "Lvl 2 Button")
+                {
+                    SceneManager.LoadScene("Fairground Level 2");
+                }
+                else
+                {
+                    SceneManager.LoadScene("Fairground Level 3");
+                }
             }
         }
             

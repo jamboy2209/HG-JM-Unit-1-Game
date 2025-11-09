@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class pointCounter : MonoBehaviour
 {
@@ -16,8 +17,6 @@ public class pointCounter : MonoBehaviour
     public AudioSource fanfare;
     public AudioClip fanfareSound;
 
-    private PlayerController playerController = new PlayerController();
- 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -53,10 +52,25 @@ public class pointCounter : MonoBehaviour
     private void SetPointText()
     {
         pointText.text = "Score " + score.ToString();
-        
-        if (score >= 15)
+
+        int winScore;
+
+        if (SceneManager.GetActiveScene().name == "Fairground Level 1")
         {
-            winTextObject.SetActive (true);
+            winScore = 5;
+        }
+        else if (SceneManager.GetActiveScene().name == "Fairground Level 2")
+        {
+            winScore = 10;
+        }
+        else
+        {
+            winScore = 15;
+        }
+
+        if (score >= winScore)
+        {
+            winTextObject.SetActive(true);
 
             fanfare.PlayOneShot(fanfareSound, 0.75f);
         }
