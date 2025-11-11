@@ -156,11 +156,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &4702792 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4465358869294942395, guid: 0581c1f1883cf89428488f454d683d4f, type: 3}
-  m_PrefabInstance: {fileID: 8148809986538338789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &14439245 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8440949057871158648, guid: 010ce30cd623dcb4188d2b7be79f6049, type: 3}
@@ -730,7 +725,6 @@ GameObject:
   - component: {fileID: 200734086}
   - component: {fileID: 200734085}
   - component: {fileID: 200734089}
-  - component: {fileID: 200734088}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -814,18 +808,6 @@ Transform:
   - {fileID: 346275459}
   m_Father: {fileID: 561439552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &200734088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200734084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc7b20e637690049a5d457abcbfc0c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &200734089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2387,11 +2369,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533808921}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &551578622 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4465358869294942395, guid: 0581c1f1883cf89428488f454d683d4f, type: 3}
-  m_PrefabInstance: {fileID: 586531815}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &560260914
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,17 +2797,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bdb6e8f85af4644b0112845f86d37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duckPlatforms:
-  - {fileID: 4702792}
-  - {fileID: 551578622}
-  - {fileID: 1372534163}
   levelNo: 0
   MoveSpeed: 10
   camera: {fileID: 200734086}
   head: {fileID: 200734087}
   Senstivity: 60
   cooldownTime: 30
-  m_RayDistance: 15
+  gunRange: 10
   bulletForce: 30
   gun: {fileID: 1173230020}
   source: {fileID: 2022002247}
@@ -6479,11 +6452,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 777248629}
   m_SourcePrefab: {fileID: 100100000, guid: 010ce30cd623dcb4188d2b7be79f6049, type: 3}
---- !u!1 &1372534163 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4465358869294942395, guid: 0581c1f1883cf89428488f454d683d4f, type: 3}
-  m_PrefabInstance: {fileID: 1593233283}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1393071517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7064632711452488549, guid: 7ae3b836401e09a4d8a12d91358ecda1, type: 3}

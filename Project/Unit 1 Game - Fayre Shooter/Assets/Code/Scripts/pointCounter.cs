@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class pointCounter : MonoBehaviour
